@@ -1,3 +1,6 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Initial commit and project strucutre
+- Added support for Monarch
+- Added support for linting
+- Added support for VSCode debugging using extensions

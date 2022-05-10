@@ -17,7 +17,7 @@ Welcome to Blendverse UI. This package features a list of components that are us
 
 ## Features
 
-1. Avatar [ insert link to avatar docs ]
+1. [Avatar](./lib/src/widgets/avatar.dart)
 
 ## Getting started
 
@@ -37,6 +37,12 @@ Run `monarch` from the root folder to launch all the tests
 
 ```sh
 monarch run
+```
+
+For regular tests you can use
+
+```sh
+flutter test
 ```
 
 ## Additional information
