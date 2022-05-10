@@ -1,4 +1,4 @@
-import 'package:blendverse_ui/src/utils/widget_size_enum.dart';
+import 'package:blendverse_ui/src/utils/widget_size.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display user avatar picture.
