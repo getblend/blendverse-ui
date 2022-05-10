@@ -4,3 +4,4 @@
 - Added support for Monarch
 - Added support for linting
 - Added support for VSCode debugging using extensions
+- Added Avatar

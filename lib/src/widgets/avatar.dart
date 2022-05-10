@@ -1,3 +1,4 @@
+import 'package:blendverse_ui/src/utils/widget_size.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display user avatar picture.
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 /// {@tool snippet}
 ///
 /// If the avatar is to have an image, the image should be specified in the
-/// [imageSrc] property:
+/// [src] property:
 ///
 /// ```dart
 /// Avatar(
@@ -14,19 +15,58 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
+///
+/// {@tool snippet}
+///
+/// If the avatar is to have a size, the image should be specified in the
+/// [size] property:
+/// [size] property takes in [WidgetSize] enum
+///
+/// ```dart
+/// Avatar(
+///   imageSrc: ScreenSize.md
+/// )
+/// ```
+/// {@end-tool}
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key, required this.imageSrc}) : super(key: key);
+  const Avatar({
+    Key? key,
+    required this.src,
+    this.size = WidgetSize.md,
+  }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
   ///
-  /// The arguments [imageSrc] must not be null.
-  final String imageSrc;
+  /// The arguments [src] must not be null.
+  final String src;
+
+  ///The display size customizable property
+  ///
+  ///The argument [size] takes md = 32 as the default property
+  ///
+  final WidgetSize size;
+
+  /// dart getter function [_radius] to alter the size of the avatar
+  double get _radius {
+    switch (size) {
+      case WidgetSize.xs:
+        return 16;
+      case WidgetSize.sm:
+        return 24;
+      case WidgetSize.md:
+        return 32;
+      case WidgetSize.lg:
+        return 48;
+      case WidgetSize.xl:
+        return 72;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      foregroundImage: NetworkImage(imageSrc),
-      radius: 42,
+      backgroundImage: NetworkImage(src),
+      radius: _radius,
     );
   }
 }
