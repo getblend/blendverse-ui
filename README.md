@@ -33,11 +33,10 @@ We use Monarch for our testing, so be sure to install that. You can follow the d
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Run `monarch` from the root folder to launch all the tests
 
-```dart
-const like = 'sample';
+```sh
+monarch run
 ```
 
 ## Additional information
