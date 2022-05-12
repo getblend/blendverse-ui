@@ -42,13 +42,27 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
-
+///
+/// {@tool snippet}
+///
+/// If the avatar is to have a function that triggers on Tap,
+/// The function/action needs to be passed through
+/// [onTap] property:
+/// [onTap] property can take (){} empty function if there is no action
+///
+/// ```dart
+/// Avatar(
+///   onTapHandler: ()=>{}
+/// )
+/// ```
+/// {@end-tool}
 class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
     this.cache = true,
+    this.onTap,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -69,6 +83,13 @@ class Avatar extends StatelessWidget {
   /// By default the caching will be set to false
   final bool cache;
 
+  ///The onTap function is a  customizable property
+  ///
+  ///The argument [onTap] takes a function that handles onTap gesture,
+  ///cannot be null but can take an empty function
+  ///
+  final Function()? onTap;
+
   /// dart getter function [_radius] to alter the size of the avatar
   double get _radius {
     switch (size) {
@@ -85,9 +106,9 @@ class Avatar extends StatelessWidget {
     }
   }
 
-  /// dart getter function [_foregroundImage] to cache image only if
+  /// dart getter function [_image] to cache image only if
   /// cache flag is true
-  ImageProvider? get _foregroundImage {
+  ImageProvider? get _image {
     if (cache) {
       return CachedNetworkImageProvider(src);
     }
@@ -96,10 +117,12 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      foregroundImage: _foregroundImage,
-      backgroundImage: NetworkImage(src),
-      radius: _radius,
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        backgroundImage: _image,
+        radius: _radius,
+      ),
     );
   }
 }
