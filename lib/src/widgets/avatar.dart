@@ -28,11 +28,26 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
+///
+/// {@tool snippet}
+///
+/// If the avatar is to have a function that triggers on Tap,
+/// The function/action needs to be passed through
+/// [onTap] property:
+/// [onTap] property can take (){} empty function if there is no action
+///
+/// ```dart
+/// Avatar(
+///   onTapHandler: ()=>{}
+/// )
+/// ```
+/// {@end-tool}
 class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
+    this.onTap,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -45,6 +60,13 @@ class Avatar extends StatelessWidget {
   ///The argument [size] takes md = 32 as the default property
   ///
   final WidgetSize size;
+
+  ///The onTap function is a  customizable property
+  ///
+  ///The argument [onTap] takes a function that handles onTap gesture,
+  ///cannot be null but can take an empty function
+  ///
+  final Function()? onTap;
 
   /// dart getter function [_radius] to alter the size of the avatar
   double get _radius {
@@ -64,9 +86,12 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundImage: NetworkImage(src),
-      radius: _radius,
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(src),
+        radius: _radius,
+      ),
     );
   }
 }
