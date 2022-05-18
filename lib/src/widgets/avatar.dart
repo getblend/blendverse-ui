@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:blendverse_ui/src/utils/widget_size.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +47,7 @@ class Avatar extends StatelessWidget {
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
-    this.fallbackName = '',
+    required this.fallbackName,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -57,9 +55,9 @@ class Avatar extends StatelessWidget {
   /// The arguments [src] must not be null.
   final String src;
 
-  ///The display size customizable property
+  /// The display size customizable property
   ///
-  ///The argument [size] takes md = 32 as the default property
+  /// The argument [size] takes md = 32 as the default property
   ///
   final WidgetSize size;
 
@@ -87,46 +85,57 @@ class Avatar extends StatelessWidget {
   /// dart getter function [_clipName] to get the initials from username
   /// as a primary fallback
   String get _clipName {
-    final trimName = fallbackName.trim();
-
-    if (fallbackName.isNotEmpty && trimName.split(' ').length > 1) {
-      return trimName.split(' ').map((l) => l[0]).take(2).join().toUpperCase();
-    } else if (fallbackName.trim().split(' ').length == 1) {
-      return trimName.characters.map((l) => l[0]).take(2).join().toUpperCase();
-    } else {
-      return '';
+    if (fallbackName.isNotEmpty) {
+      final trimName = fallbackName.trim();
+      final splitName = trimName.split(RegExp(r'\s'));
+      final len = splitName.length;
+      if (len > 1) {
+        return splitName.map((l) => l[0]).take(2).join().toUpperCase();
+      } else if (len == 1) {
+        return trimName.characters.characterAt(0).toString().toUpperCase();
+      }
     }
+    return '';
   }
 
-  ///dart getter function [_backgroundColor] to get set random background
-  ///colors from Colors.primaries
+  /// dart getter function [_backgroundColor] to get set random background
+  /// colors from Colors.primaries
   Color? get _backgroundColor {
-    return Colors.primaries[Random().nextInt(Colors.primaries.length)];
+    final colors = <Color>[
+      Colors.red,
+      Colors.blue,
+      Colors.green,
+      Colors.yellow,
+      Colors.orange,
+      Colors.purple,
+      Colors.indigo,
+    ];
+    final cindex = fallbackName.length % colors.length;
+
+    return colors[cindex];
   }
 
-  ///dart getter function [_backgroundImage] to get image only if username field
-  ///is null as a secondary fallback
-  ImageProvider? get _backgroundImage {
-    if (_clipName.isEmpty) {
-      return const NetworkImage(
-        'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
-      );
-    }
-    return null;
-  }
+  /// dart getter function [_backgroundImage] to get image only if username
+  /// field is null as a secondary fallback
+  ImageProvider? get _backgroundImage =>
+      const Image(image: AssetImage('lib/src/assets/images/avatar.png')).image;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: _radius,
       foregroundImage: NetworkImage(src),
-      backgroundImage: _backgroundImage,
+      backgroundImage: _clipName.isEmpty ? _backgroundImage : null,
       backgroundColor: _backgroundColor,
       child: _clipName.isEmpty
           ? null
           : Text(
               _clipName,
-              style: TextStyle(fontSize: _radius),
+              style: TextStyle(
+                fontSize: _radius - 8,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
     );
   }
