@@ -1,6 +1,6 @@
 import 'package:blendverse_ui/src/utils/widget_size.dart';
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 /// Component used to display user avatar picture.
 ///
@@ -29,16 +29,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 /// )
 /// ```
 /// {@end-tool}
-/// 
+///
 /// {@tool snippet}
 ///
 /// If the avatar image needs to be cached
-/// [isCache] needs to be set to true
+/// [cache] needs to be set to true
 ///
 ///
 /// ```dart
 /// Avatar(
-///   isCache: true
+///   cache: true
 /// )
 /// ```
 /// {@end-tool}
@@ -48,7 +48,7 @@ class Avatar extends StatelessWidget {
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
-    this.isCache = true,
+    this.cache = true,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -56,18 +56,18 @@ class Avatar extends StatelessWidget {
   /// The arguments [src] must not be null.
   final String src;
 
-  ///The display size customizable property
+  /// The display size customizable property
   ///
-  ///The argument [size] takes md = 32 as the default property
+  /// The argument [size] takes md = 32 as the default property
   ///
   final WidgetSize size;
 
   /// The caching is an optional property
   ///
-  /// The arguments [isCache] takes in a boolean value to determine
+  /// The arguments [cache] takes in a boolean value to determine
   /// the avatar needs to be cached or not
   /// By default the caching will be set to false
-  final bool isCache;
+  final bool cache;
 
   /// dart getter function [_radius] to alter the size of the avatar
   double get _radius {
@@ -85,10 +85,10 @@ class Avatar extends StatelessWidget {
     }
   }
 
-  ///dart getter function [_foregroundImage] to cache image only if
-  ///isCache flag is true
+  /// dart getter function [_foregroundImage] to cache image only if
+  /// cache flag is true
   ImageProvider? get _foregroundImage {
-    if (isCache) {
+    if (cache) {
       return CachedNetworkImageProvider(src);
     }
     return NetworkImage(src);
