@@ -68,14 +68,15 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CachedNetworkImage(
+        // TODO(bk): change this to use the user_id instead
         cacheKey: 'IM',
         placeholder: (context, imageUrl) => Icon(
           Icons.person_outline,
           size: _radius.toDouble() * 1.5,
         ),
         imageUrl: src,
-        maxHeightDiskCache: _radius * 2,
-        maxWidthDiskCache: _radius * 2,
+        maxHeightDiskCache: 72 * 2,
+        maxWidthDiskCache: 72 * 2,
         fit: BoxFit.cover,
         imageBuilder: (context, imageProvider) => CircleAvatar(
           backgroundImage: imageProvider,
