@@ -1,0 +1,6 @@
+{
+  "appTitle": "Blendverse UI",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}

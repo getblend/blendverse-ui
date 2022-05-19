@@ -42,10 +42,9 @@ class Avatar extends StatelessWidget {
   /// The arguments [src] must not be null.
   final String src;
 
-  /// The display size customizable property
+  /// Controls the radius of the size property
   ///
   /// The argument [size] takes md = 32 as the default property
-  ///
   final WidgetSize size;
 
   /// dart getter function [_radius] to alter the size of the avatar

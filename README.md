@@ -33,15 +33,24 @@ We use Monarch for our testing, so be sure to install that. You can follow the d
 
 ## Usage
 
-Run `monarch` from the root folder to launch all the tests
+Run `flutter run` from the `example` folder to run on a connected device
 
 ```sh
+cd example
+flutter run
+```
+
+Run `monarch` from the `example` folder to launch all the tests
+
+```sh
+cd example
 monarch run
 ```
 
 For regular tests you can use
 
 ```sh
+cd example
 flutter test
 ```
 
