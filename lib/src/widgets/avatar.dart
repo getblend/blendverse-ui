@@ -1,5 +1,6 @@
 import 'package:blendverse_ui/src/utils/random_color.dart';
 import 'package:blendverse_ui/src/utils/widget_size.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display user avatar picture.
@@ -56,10 +57,9 @@ class Avatar extends StatelessWidget {
   /// The arguments [src] must not be null.
   final String src;
 
-  /// The display size customizable property
+  /// Controls the radius of the size property
   ///
   /// The argument [size] takes md = 32 as the default property
-  ///
   final WidgetSize size;
 
   /// The full name of the avatar/user
@@ -68,7 +68,7 @@ class Avatar extends StatelessWidget {
   final String fallbackName;
 
   /// dart getter function [_radius] to alter the size of the avatar
-  double get _radius {
+  int get _radius {
     switch (size) {
       case WidgetSize.xs:
         return 16;
@@ -99,29 +99,37 @@ class Avatar extends StatelessWidget {
     return '';
   }
 
-  /// dart getter function [_backgroundImage] to get image only if username
-  /// field is null as a secondary fallback
-  ImageProvider? get _backgroundImage =>
-      const Image(image: AssetImage('lib/src/assets/images/avatar.png')).image;
-
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: _radius,
-      foregroundImage: NetworkImage(src),
-      backgroundImage: _clipName.isEmpty ? _backgroundImage : null,
-      backgroundColor: RandomColor(Colors.white)
-          .random(fallbackName.isEmpty ? 0 : fallbackName.length),
-      child: _clipName.isEmpty
-          ? null
-          : Text(
-              _clipName,
-              style: TextStyle(
-                fontSize: _radius - 8,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+    return GestureDetector(
+      child: CachedNetworkImage(
+        // TODO(bk): change this to use the user_id instead
+        cacheKey: fallbackName,
+        placeholder: (context, imageUrl) => Icon(
+          Icons.person_outline,
+          size: _radius.toDouble() * 1.5,
+        ),
+        imageUrl: src,
+        maxHeightDiskCache: 72 * 2,
+        maxWidthDiskCache: 72 * 2,
+        fit: BoxFit.cover,
+        imageBuilder: (context, imageProvider) => CircleAvatar(
+          backgroundImage: imageProvider,
+          radius: _radius.toDouble(),
+          backgroundColor: RandomColor(Colors.white)
+              .random(fallbackName.isEmpty ? 0 : fallbackName.length),
+          child: _clipName.isEmpty
+              ? null
+              : Text(
+                  _clipName,
+                  style: TextStyle(
+                    fontSize: _radius - 8,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+        ),
+      ),
     );
   }
 }
