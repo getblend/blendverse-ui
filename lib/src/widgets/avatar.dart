@@ -29,26 +29,12 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
-///
-/// {@tool snippet}
-///
-/// If the avatar image needs to be cached
-/// [cache] needs to be set to true
-///
-///
-/// ```dart
-/// Avatar(
-///   cache: true
-/// )
-/// ```
-/// {@end-tool}
 
 class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
-    this.cache = true,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -61,13 +47,6 @@ class Avatar extends StatelessWidget {
   /// The argument [size] takes md = 32 as the default property
   ///
   final WidgetSize size;
-
-  /// The caching is an optional property
-  ///
-  /// The arguments [cache] takes in a boolean value to determine
-  /// the avatar needs to be cached or not
-  /// By default the caching will be set to false
-  final bool cache;
 
   /// dart getter function [_radius] to alter the size of the avatar
   int get _radius {
