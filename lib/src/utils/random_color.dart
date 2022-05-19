@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// colors from Colors.primaries
 
 extension RandomColor on Color {
-  Color random(int seed) {
+  Color random(int? seed) {
     final colors = <Color>[
       Colors.red,
       Colors.blue,
@@ -15,7 +15,7 @@ extension RandomColor on Color {
       Colors.purple,
       Colors.indigo,
     ];
-    if (seed == 0) {
+    if (seed == null || seed == 0) {
       return colors[Random().nextInt(colors.length)];
     }
     return colors[seed % colors.length];
