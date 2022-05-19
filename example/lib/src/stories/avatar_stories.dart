@@ -1,12 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'package:blendverse_ui/widgets.dart';
 import 'package:flutter/material.dart';
 
-Widget avatars() => Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+import '../story/story.dart';
+
+Widget basic() => const Story(
+      'Basic ',
+      [
         Avatar(
           src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
         ),
+      ],
+    );
+
+Widget sizes() => const Story(
+      'Available sizes',
+      [
         Avatar(
           src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
           size: WidgetSize.xs,
