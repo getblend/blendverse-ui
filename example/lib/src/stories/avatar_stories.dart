@@ -2,11 +2,12 @@
 
 import 'package:blendverse_ui/widgets.dart';
 import 'package:flutter/material.dart';
-import 'test_utils.dart';
+
+import '../story/story.dart';
 
 Widget basic() => const Story(
-      test: 'Basic configuration',
-      widgets: [
+      'Basic ',
+      [
         Avatar(
           src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
         ),
@@ -14,8 +15,8 @@ Widget basic() => const Story(
     );
 
 Widget sizes() => const Story(
-      test: 'Available sizes',
-      widgets: [
+      'Available sizes',
+      [
         Avatar(
           src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
           size: WidgetSize.xs,
