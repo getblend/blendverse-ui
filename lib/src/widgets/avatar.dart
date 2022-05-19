@@ -29,40 +29,12 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
-///
-/// {@tool snippet}
-///
-/// If the avatar image needs to be cached
-/// [cache] needs to be set to true
-///
-///
-/// ```dart
-/// Avatar(
-///   cache: true
-/// )
-/// ```
-/// {@end-tool}
-///
-/// {@tool snippet}
-///
-/// If the avatar is to have a function that triggers on Tap,
-/// The function/action needs to be passed through
-/// [onTap] property:
-/// [onTap] property can take (){} empty function if there is no action
-///
-/// ```dart
-/// Avatar(
-///   onTapHandler: ()=>{}
-/// )
-/// ```
-/// {@end-tool}
-class Avatar extends CircleAvatar {
+
+class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
     required this.src,
     this.size = WidgetSize.md,
-    this.cache = true,
-    this.onTap,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -75,18 +47,8 @@ class Avatar extends CircleAvatar {
   /// The argument [size] takes md = 32 as the default property
   final WidgetSize size;
 
-  /// The caching is an optional property
-  ///
-  /// The arguments [cache] takes in a boolean value to determine
-  /// the avatar needs to be cached or not
-  /// By default the caching will be set to false
-  final bool cache;
-
-  /// Invokes a callback that handles the onTap gesture.
-  final VoidCallback? onTap;
-
   /// dart getter function [_radius] to alter the size of the avatar
-  double get _radius {
+  int get _radius {
     switch (size) {
       case WidgetSize.xs:
         return 16;
@@ -101,22 +63,24 @@ class Avatar extends CircleAvatar {
     }
   }
 
-  /// dart getter function [_image] to cache image only if
-  /// cache flag is true
-  ImageProvider? get _image {
-    if (cache) {
-      return CachedNetworkImageProvider(src);
-    }
-    return NetworkImage(src);
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: CircleAvatar(
-        backgroundImage: _image,
-        radius: _radius,
+      child: CachedNetworkImage(
+        // TODO(bk): change this to use the user_id instead
+        cacheKey: 'IM',
+        placeholder: (context, imageUrl) => Icon(
+          Icons.person_outline,
+          size: _radius.toDouble() * 1.5,
+        ),
+        imageUrl: src,
+        maxHeightDiskCache: 72 * 2,
+        maxWidthDiskCache: 72 * 2,
+        fit: BoxFit.cover,
+        imageBuilder: (context, imageProvider) => CircleAvatar(
+          backgroundImage: imageProvider,
+          radius: _radius.toDouble(),
+        ),
       ),
     );
   }
