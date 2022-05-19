@@ -70,7 +70,7 @@ class Avatar extends StatelessWidget {
   final bool cache;
 
   /// dart getter function [_radius] to alter the size of the avatar
-  double get _radius {
+  int get _radius {
     switch (size) {
       case WidgetSize.xs:
         return 16;
@@ -85,21 +85,24 @@ class Avatar extends StatelessWidget {
     }
   }
 
-  /// dart getter function [_foregroundImage] to cache image only if
-  /// cache flag is true
-  ImageProvider? get _foregroundImage {
-    if (cache) {
-      return CachedNetworkImageProvider(src);
-    }
-    return NetworkImage(src);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      foregroundImage: _foregroundImage,
-      backgroundImage: NetworkImage(src),
-      radius: _radius,
+    return GestureDetector(
+      child: CachedNetworkImage(
+        cacheKey: 'IM',
+        placeholder: (context, imageUrl) => Icon(
+          Icons.person_outline,
+          size: _radius.toDouble() * 1.5,
+        ),
+        imageUrl: src,
+        maxHeightDiskCache: _radius * 2,
+        maxWidthDiskCache: _radius * 2,
+        fit: BoxFit.cover,
+        imageBuilder: (context, imageProvider) => CircleAvatar(
+          backgroundImage: imageProvider,
+          radius: _radius.toDouble(),
+        ),
+      ),
     );
   }
 }
