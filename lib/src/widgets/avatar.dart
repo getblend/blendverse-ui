@@ -56,7 +56,7 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 /// {@end-tool}
-class Avatar extends StatelessWidget {
+class Avatar extends CircleAvatar {
   const Avatar({
     Key? key,
     required this.src,
@@ -70,10 +70,9 @@ class Avatar extends StatelessWidget {
   /// The arguments [src] must not be null.
   final String src;
 
-  /// The display size customizable property
+  /// Controls the radius of the size property
   ///
   /// The argument [size] takes md = 32 as the default property
-  ///
   final WidgetSize size;
 
   /// The caching is an optional property
@@ -83,12 +82,8 @@ class Avatar extends StatelessWidget {
   /// By default the caching will be set to false
   final bool cache;
 
-  ///The onTap function is a  customizable property
-  ///
-  ///The argument [onTap] takes a function that handles onTap gesture,
-  ///cannot be null but can take an empty function
-  ///
-  final Function()? onTap;
+  /// Invokes a callback that handles the onTap gesture.
+  final VoidCallback? onTap;
 
   /// dart getter function [_radius] to alter the size of the avatar
   double get _radius {
