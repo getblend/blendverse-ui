@@ -1,3 +1,4 @@
+import 'package:blendverse_ui/src/utils/random_color.dart';
 import 'package:blendverse_ui/src/utils/widget_size.dart';
 import 'package:flutter/material.dart';
 
@@ -98,23 +99,6 @@ class Avatar extends StatelessWidget {
     return '';
   }
 
-  /// dart getter function [_backgroundColor] to get set random background
-  /// colors from Colors.primaries
-  Color? get _backgroundColor {
-    final colors = <Color>[
-      Colors.red,
-      Colors.blue,
-      Colors.green,
-      Colors.yellow,
-      Colors.orange,
-      Colors.purple,
-      Colors.indigo,
-    ];
-    final cindex = fallbackName.length % colors.length;
-
-    return colors[cindex];
-  }
-
   /// dart getter function [_backgroundImage] to get image only if username
   /// field is null as a secondary fallback
   ImageProvider? get _backgroundImage =>
@@ -126,7 +110,8 @@ class Avatar extends StatelessWidget {
       radius: _radius,
       foregroundImage: NetworkImage(src),
       backgroundImage: _clipName.isEmpty ? _backgroundImage : null,
-      backgroundColor: _backgroundColor,
+      backgroundColor: RandomColor(Colors.white)
+          .random(fallbackName.isEmpty ? 0 : fallbackName.length),
       child: _clipName.isEmpty
           ? null
           : Text(
