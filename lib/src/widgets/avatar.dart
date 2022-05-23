@@ -44,6 +44,7 @@ import 'package:flutter/material.dart';
 ///   fallbackName: 'Lorem Ipsum'
 /// )
 /// ```
+
 class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
@@ -65,7 +66,7 @@ class Avatar extends StatelessWidget {
   /// The full name of the avatar/user
   final String? name;
 
-  /// dart getter function [_radius] to alter the size of the avatar
+  /// Dart getter function [_radius] to alter the size of the avatar
   int get _radius {
     switch (size) {
       case WidgetSize.xs:
@@ -81,8 +82,8 @@ class Avatar extends StatelessWidget {
     }
   }
 
-  /// dart getter function [_initials] to get the initials from username
-  /// as a primary fallback
+  /// Dart getter function [_initials] to get the initials from username
+  /// As a primary fallback
   String? get _initials {
     if (name == null || name!.isEmpty) {
       return null;
@@ -102,34 +103,60 @@ class Avatar extends StatelessWidget {
     }
   }
 
+  /// Dart getter function [_icon] to get the default icon if the http response
+  /// Fails and there is no initials of the user
+  Widget get _icon {
+    return Container(
+      padding: EdgeInsets.all(_radius.toDouble() / 3.4),
+      decoration: const BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
+      child: Icon(
+        Icons.person_outline,
+        size: _radius.toDouble() * 1.5,
+      ),
+    );
+  }
+
+  /// Dart getter function [_initialsIcon] to get the background with
+  /// The initials
+  Widget get _initialsIcon {
+    return CircleAvatar(
+      radius: _radius.toDouble(),
+      backgroundColor: RandomColor(Colors.white).random(name?.length),
+      child: Text(
+        _initials.toString(),
+        style: TextStyle(
+          fontSize: _radius - 8,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CachedNetworkImage(
         // TODO(bk): change this to use the user_id instead
         cacheKey: name,
-        placeholder: (context, imageUrl) => Icon(
-          Icons.person_outline,
-          size: _radius.toDouble() * 1.5,
-        ),
+        placeholder: (context, imageUrl) => const CircularProgressIndicator(),
         imageUrl: src,
         maxHeightDiskCache: 72 * 2,
         maxWidthDiskCache: 72 * 2,
         fit: BoxFit.cover,
+
+        errorWidget: (context, url, dynamic error) {
+          if (_initials == null) {
+            return _icon;
+          }
+          return _initialsIcon;
+        },
         imageBuilder: (context, imageProvider) => CircleAvatar(
-          backgroundImage: imageProvider,
+          foregroundImage: imageProvider,
           radius: _radius.toDouble(),
-          backgroundColor: RandomColor(Colors.white).random(name?.length),
-          child: _initials == null
-              ? null
-              : Text(
-                  _initials!,
-                  style: TextStyle(
-                    fontSize: _radius - 8,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
         ),
       ),
     );
