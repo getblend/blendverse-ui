@@ -13,3 +13,29 @@ Widget basic() => const Story(
         ),
       ],
     );
+
+Widget sizes() => const Story(
+      'Available sizes',
+      [
+        BlendIcon(
+          size: WidgetSize.xs,
+          blendIcons: BlendIcons.rection,
+        ),
+        BlendIcon(
+          size: WidgetSize.sm,
+          blendIcons: BlendIcons.rection,
+        ),
+        BlendIcon(
+          size: WidgetSize.md,
+          blendIcons: BlendIcons.rection,
+        ),
+        BlendIcon(
+          size: WidgetSize.lg,
+          blendIcons: BlendIcons.rection,
+        ),
+        BlendIcon(
+          size: WidgetSize.xl,
+          blendIcons: BlendIcons.rection,
+        ),
+      ],
+    );
