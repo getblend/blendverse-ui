@@ -23,6 +23,7 @@ class BlendIcon extends StatelessWidget {
     Key? key,
     required this.blendIcons,
     this.size = WidgetSize.md,
+    this.counter,
   }) : super(key: key);
 
   /// The [blendIcons] takes in [BlendIcons] enum, which icon to load
@@ -34,6 +35,11 @@ class BlendIcon extends StatelessWidget {
   ///
   /// The argument [size] takes md = 32 as the default property
   final WidgetSize size;
+
+  /// Contains text to display info about the icon
+  ///
+  /// The argument [counter] takes count = '0.0' as the default property
+  final String? counter;
 
   /// Dart getter function to get [IconData] from the enum [BlendIcons]
   IconData? get _getIcon {
@@ -66,11 +72,33 @@ class BlendIcon extends StatelessWidget {
     }
   }
 
+  /// Dart getter function to check if the counter text is required
+  Widget get _getText {
+    if (counter != null) {
+      return Text(
+        counter.toString(),
+        style: TextStyle(
+          color: const Color.fromARGB(255, 168, 165, 165),
+          fontWeight: FontWeight.bold,
+          fontSize: _size.toDouble() / 3.5,
+        ),
+        textAlign: TextAlign.center,
+      );
+    }
+    return const SizedBox(height: 0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      _getIcon,
-      size: _size.toDouble(),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          _getIcon,
+          size: _size.toDouble(),
+        ),
+        _getText,
+      ],
     );
   }
 }

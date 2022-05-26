@@ -39,3 +39,13 @@ Widget sizes() => const Story(
         ),
       ],
     );
+
+Widget text() => const Story(
+      'Icon with Text ',
+      [
+        BlendIcon(
+          blendIcons: BlendIcons.rection,
+          counter: '0.0K',
+        ),
+      ],
+    );

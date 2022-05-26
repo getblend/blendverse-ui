@@ -3,5 +3,5 @@ import 'icons_stories.dart' as icons;
 
 var allStories = {
   'avatar': [avatar.basic(), avatar.sizes()],
-  'icons': [icons.basic(), icons.sizes()]
+  'icons': [icons.basic(), icons.sizes(), icons.text()]
 };
