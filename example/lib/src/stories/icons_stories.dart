@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 
 import '../story/story.dart';
 
-Widget basic() => const Story(
+Widget basic() => Story(
       'Basic ',
       [
         BlendIcon(
           blendIcons: BlendIcons.rection,
+          onTap: () => {print('onTap')},
+          onLongPress: () => {print('onLongPress')},
         ),
       ],
     );

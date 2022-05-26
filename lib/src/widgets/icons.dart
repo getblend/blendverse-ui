@@ -24,6 +24,8 @@ class BlendIcon extends StatelessWidget {
     required this.blendIcons,
     this.size = WidgetSize.md,
     this.counter,
+    this.onTap,
+    this.onLongPress,
   }) : super(key: key);
 
   /// The [blendIcons] takes in [BlendIcons] enum, which icon to load
@@ -40,6 +42,16 @@ class BlendIcon extends StatelessWidget {
   ///
   /// The argument [counter] takes count = '0.0' as the default property
   final String? counter;
+
+  /// Contains function to perform onTap gesture on the icon
+  ///
+  /// The argument [onTap] takes a function and null as default
+  final VoidCallback? onTap;
+
+  /// Contains text to display info about the icon
+  ///
+  /// The argument [onLongPress] takes a function and null as deafult
+  final VoidCallback? onLongPress;
 
   /// Dart getter function to get [IconData] from the enum [BlendIcons]
   IconData? get _getIcon {
@@ -93,9 +105,13 @@ class BlendIcon extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          _getIcon,
-          size: _size.toDouble(),
+        GestureDetector(
+          onTap: onTap,
+          onLongPress: onLongPress,
+          child: Icon(
+            _getIcon,
+            size: _size.toDouble(),
+          ),
         ),
         _getText,
       ],
