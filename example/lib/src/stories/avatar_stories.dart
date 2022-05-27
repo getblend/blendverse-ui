@@ -14,70 +14,54 @@ Widget basic() => const Story(
       ],
     );
 
-Widget sizes() => Story(
+Widget sizes() => const Story(
       'Available sizes',
       [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
-            Avatar(
-              src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
-              size: WidgetSize.xs,
-              name: 'Thejas',
-            ),
-            Avatar(
-              src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
-              size: WidgetSize.sm,
-              name: 'Thejasvee Murthy',
-            ),
-            Avatar(
-              src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
-              size: WidgetSize.md,
-              name: 'Vivek Janardhan',
-            ),
-            Avatar(
-              src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
-              // ignore: avoid_redundant_argument_values
-              size: WidgetSize.lg,
-              name: 'Kiran ML',
-            ),
-            Avatar(
-              src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
-              size: WidgetSize.xl,
-              name: 'Bhargav',
-            ),
-          ],
-        )
+        Avatar(
+          src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
+          size: WidgetSize.xs,
+          name: 'Thejas',
+        ),
+        Avatar(
+          src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
+          size: WidgetSize.sm,
+          name: 'Thejasvee Murthy',
+        ),
+        Avatar(
+          src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
+          size: WidgetSize.md,
+          name: 'Vivek Janardhan',
+        ),
+        Avatar(
+          src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
+          // ignore: avoid_redundant_argument_values
+          size: WidgetSize.lg,
+          name: 'Kiran ML',
+        ),
+        Avatar(
+          src: 'https://miro.medium.com/max/250/0*0fClPmIScV5pTLoE.jpg',
+          size: WidgetSize.xl,
+          name: 'Bhargav',
+        ),
       ],
     );
 
-Widget fallbacks() => Story(
+Widget fallbacks() => const Story(
       'Fallbacks',
       [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
-            Avatar(
-              src: '',
-              size: WidgetSize.sm,
-              name: '',
-            ),
-            Avatar(
-              src: '',
-              size: WidgetSize.sm,
-              name: 'T',
-            ),
-            Avatar(
-              src: '',
-              size: WidgetSize.sm,
-              name: 'Vivek Janardha',
-            ),
-            Avatar(
-              src: '',
-              size: WidgetSize.sm,
-              name: 'Vivek Janardha',
-            ),
-          ],
+        Avatar(
+          src: '',
+          size: WidgetSize.lg,
+          name: '',
+        ),
+        Avatar(
+          src: '',
+          size: WidgetSize.sm,
+          name: 'T',
+        ),
+        Avatar(
+          src: '',
+          name: 'Vivek Janardha',
         ),
       ],
     );

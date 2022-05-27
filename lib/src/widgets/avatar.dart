@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 /// Component used to display user avatar picture.
 ///
 /// If [src] fails then [name] is used. If
-/// [name] fails too, [_backgroundImage] is used.
+/// [name] fails too, [_buildFallback] is used.
 /// USAGE:
 /// {@tool snippet}
 ///
@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 ///
 /// ```dart
 /// Avatar(
-///   imageSrc: 'https://i.pravatar.cc/150?img=54'
+///   src: 'https://i.pravatar.cc/150?img=54'
 /// )
 /// ```
 /// {@end-tool}
@@ -28,7 +28,7 @@ import 'package:flutter/material.dart';
 ///
 /// ```dart
 /// Avatar(
-///   imageSrc: ScreenSize.md
+///   size: WidgetSize.md
 /// )
 /// ```
 /// {@end-tool}
@@ -41,7 +41,7 @@ import 'package:flutter/material.dart';
 ///
 /// ```dart
 /// Avatar(
-///   fallbackName: 'Lorem Ipsum'
+///   name: 'Lorem Ipsum'
 /// )
 /// ```
 
@@ -103,36 +103,21 @@ class Avatar extends StatelessWidget {
     }
   }
 
-  /// Dart getter function [_icon] to get the default icon if the http response
-  /// Fails and there is no initials of the user
-  Widget get _icon {
-    return Container(
-      padding: EdgeInsets.all(_radius.toDouble() / 3.4),
-      decoration: const BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.all(Radius.circular(50)),
-      ),
-      child: Icon(
-        Icons.person_outline,
-        size: _radius.toDouble() * 1.5,
-      ),
-    );
-  }
-
-  /// Dart getter function [_initialsIcon] to get the background with
+  /// Dart getter function [_buildFallback] to get the background with
   /// The initials
-  Widget get _initialsIcon {
+  Widget _buildFallback(BuildContext context) {
     return CircleAvatar(
       radius: _radius.toDouble(),
-      backgroundColor: RandomColor(Colors.white).random(name?.length),
-      child: Text(
-        _initials.toString(),
-        style: TextStyle(
-          fontSize: _radius - 8,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
+      backgroundColor: RandomColor.random(name?.length),
+      child: _initials == null
+          ? Icon(
+              Icons.person_outline,
+              size: _radius.toDouble(),
+            )
+          : Text(
+              _initials.toString(),
+              style: Theme.of(context).textTheme.headline6,
+            ),
     );
   }
 
@@ -142,18 +127,12 @@ class Avatar extends StatelessWidget {
       child: CachedNetworkImage(
         // TODO(bk): change this to use the user_id instead
         cacheKey: name,
-        placeholder: (context, imageUrl) => const CircularProgressIndicator(),
+        placeholder: (context, imageUrl) => _buildFallback(context),
         imageUrl: src,
-        maxHeightDiskCache: 72 * 2,
-        maxWidthDiskCache: 72 * 2,
+        maxHeightDiskCache: 72 * 4,
+        maxWidthDiskCache: 72 * 4,
         fit: BoxFit.cover,
-
-        errorWidget: (context, url, dynamic error) {
-          if (_initials == null) {
-            return _icon;
-          }
-          return _initialsIcon;
-        },
+        errorWidget: (context, url, dynamic error) => _buildFallback(context),
         imageBuilder: (context, imageProvider) => CircleAvatar(
           foregroundImage: imageProvider,
           radius: _radius.toDouble(),
