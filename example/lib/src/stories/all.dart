@@ -1,7 +1,7 @@
 import 'avatar_stories.dart' as avatar;
-import 'icons_stories.dart' as icons;
+import 'icon_button_stories.dart' as icon_buttons;
 
 var allStories = {
-  'avatar': [avatar.basic(), avatar.sizes(), avatar.fallbacks()],
-  'icons': [icons.basic(), icons.sizes()]
+  'Avatar': [avatar.basic(), avatar.sizes(), avatar.fallbacks()],
+  'Icon Button': [icon_buttons.basic(), icon_buttons.sizes()]
 };

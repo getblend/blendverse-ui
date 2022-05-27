@@ -1,15 +1,15 @@
 // ignore_for_file: avoid_print
 
 import 'package:blendverse_ui/widgets.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../story/story.dart';
 
 Widget basic() => const Story(
       'Basic ',
       [
-        BlendIcon(
-          blendIcons: BlendIcons.rection,
+        IconButton(
+          data: BlendIcons.favorite,
         ),
       ],
     );
@@ -17,25 +17,25 @@ Widget basic() => const Story(
 Widget sizes() => const Story(
       'Available sizes',
       [
-        BlendIcon(
+        IconButton(
           size: WidgetSize.xs,
-          blendIcons: BlendIcons.rection,
+          data: BlendIcons.favorite,
         ),
-        BlendIcon(
+        IconButton(
           size: WidgetSize.sm,
-          blendIcons: BlendIcons.rection,
+          data: BlendIcons.favorite,
         ),
-        BlendIcon(
+        IconButton(
           size: WidgetSize.md,
-          blendIcons: BlendIcons.rection,
+          data: BlendIcons.favorite,
         ),
-        BlendIcon(
+        IconButton(
           size: WidgetSize.lg,
-          blendIcons: BlendIcons.rection,
+          data: BlendIcons.favorite,
         ),
-        BlendIcon(
+        IconButton(
           size: WidgetSize.xl,
-          blendIcons: BlendIcons.rection,
+          data: BlendIcons.favorite,
         ),
       ],
     );
