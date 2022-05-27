@@ -51,6 +51,7 @@ class Avatar extends StatelessWidget {
     required this.src,
     this.size = WidgetSize.md,
     this.name,
+    this.onTap,
   }) : super(key: key);
 
   /// The URL of the image from where to fetch the data.
@@ -65,6 +66,32 @@ class Avatar extends StatelessWidget {
 
   /// The full name of the avatar/user
   final String? name;
+
+  /// Contains function to perform onTap gesture on the avatar
+  ///
+  /// The argument [onTap] takes a function and null as default
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: CachedNetworkImage(
+        // TODO(bk): change this to use the user_id instead
+        cacheKey: name,
+        placeholder: (context, imageUrl) => _buildFallback(context),
+        imageUrl: src,
+        maxHeightDiskCache: 72 * 4,
+        maxWidthDiskCache: 72 * 4,
+        fit: BoxFit.cover,
+        errorWidget: (context, url, dynamic error) => _buildFallback(context),
+        imageBuilder: (context, imageProvider) => CircleAvatar(
+          foregroundImage: imageProvider,
+          radius: _radius.toDouble(),
+        ),
+      ),
+    );
+  }
 
   /// Dart getter function [_radius] to alter the size of the avatar
   int get _radius {
@@ -118,26 +145,6 @@ class Avatar extends StatelessWidget {
               _initials.toString(),
               style: Theme.of(context).textTheme.headline6,
             ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: CachedNetworkImage(
-        // TODO(bk): change this to use the user_id instead
-        cacheKey: name,
-        placeholder: (context, imageUrl) => _buildFallback(context),
-        imageUrl: src,
-        maxHeightDiskCache: 72 * 4,
-        maxWidthDiskCache: 72 * 4,
-        fit: BoxFit.cover,
-        errorWidget: (context, url, dynamic error) => _buildFallback(context),
-        imageBuilder: (context, imageProvider) => CircleAvatar(
-          foregroundImage: imageProvider,
-          radius: _radius.toDouble(),
-        ),
-      ),
     );
   }
 }
