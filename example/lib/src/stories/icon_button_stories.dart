@@ -14,28 +14,44 @@ Widget basic() => const Story(
       ],
     );
 
-Widget sizes() => const Story(
+Widget sizes() => Story(
       'Available sizes',
       [
         IconButton(
           size: WidgetSize.xs,
           data: BlendIcons.favorite,
+          color: RandomColor.random(null),
         ),
         IconButton(
           size: WidgetSize.sm,
           data: BlendIcons.favorite,
+          color: RandomColor.random(null),
         ),
         IconButton(
           size: WidgetSize.md,
           data: BlendIcons.favorite,
+          color: RandomColor.random(null),
         ),
         IconButton(
           size: WidgetSize.lg,
           data: BlendIcons.favorite,
+          color: RandomColor.random(null),
         ),
         IconButton(
           size: WidgetSize.xl,
           data: BlendIcons.favorite,
+          color: RandomColor.random(null),
+        ),
+      ],
+    );
+
+Widget counter() => const Story(
+      'Counter',
+      [
+        IconButton(
+          size: WidgetSize.xs,
+          data: BlendIcons.favorite,
+          counter: '12.6K',
         ),
       ],
     );

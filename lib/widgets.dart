@@ -1,4 +1,3 @@
-export './src/utils/blend_icons.dart';
-export './src/utils/widget_size.dart';
+export './src/utils/utils.dart';
 export './src/widgets/avatar.dart';
-export './src/widgets/icons.dart';
+export './src/widgets/icon_button.dart';
