@@ -76,15 +76,15 @@ class IconButton extends StatelessWidget {
   int get _size {
     switch (size) {
       case WidgetSize.xs:
-        return 24;
+        return 16;
       case WidgetSize.sm:
-        return 36;
+        return 24;
       case WidgetSize.md:
-        return 48;
+        return 32;
       case WidgetSize.lg:
-        return 72;
+        return 48;
       case WidgetSize.xl:
-        return 108;
+        return 72;
     }
   }
 

@@ -6,4 +6,7 @@ class BlendIcons {
   ///
   static const IconData favorite =
       IconData(0xe25b, fontFamily: 'MaterialIcons');
+
+  /// <i class="material-icons md-36">add_circle</i> &#x2014; material icon named "add circle".
+  static const IconData follow = IconData(0xe04f, fontFamily: 'MaterialIcons');
 }
