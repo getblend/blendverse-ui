@@ -6,6 +6,9 @@ var allStories = {
   'Icon Button': [
     icon_buttons.basic(),
     icon_buttons.sizes(),
-    icon_buttons.counter()
+    icon_buttons.counter(),
+    icon_buttons.basicShare(),
+    icon_buttons.shareSizes(),
+    icon_buttons.shareCounter(),
   ]
 };
