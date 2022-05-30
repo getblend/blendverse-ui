@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import '../story/story.dart';
 
 Widget basic() => const Story(
-      'Basic ',
+      'Basic Reaction',
       [
         IconButton(
           data: BlendIcons.favorite,
@@ -52,6 +52,56 @@ Widget counter() => const Story(
           size: WidgetSize.xs,
           data: BlendIcons.favorite,
           counter: '12.6K',
+        ),
+      ],
+    );
+
+Widget basicComment() => const Story(
+      'Basic Comment Icon ',
+      [
+        IconButton(
+          data: BlendIcons.comment,
+        ),
+      ],
+    );
+
+Widget commentSizes() => Story(
+      'Available sizes',
+      [
+        IconButton(
+          size: WidgetSize.xs,
+          data: BlendIcons.comment,
+          color: RandomColor.random(null),
+        ),
+        IconButton(
+          size: WidgetSize.sm,
+          data: BlendIcons.comment,
+          color: RandomColor.random(null),
+        ),
+        IconButton(
+          size: WidgetSize.md,
+          data: BlendIcons.comment,
+          color: RandomColor.random(null),
+        ),
+        IconButton(
+          size: WidgetSize.lg,
+          data: BlendIcons.comment,
+          color: RandomColor.random(null),
+        ),
+        IconButton(
+          size: WidgetSize.xl,
+          data: BlendIcons.comment,
+          color: RandomColor.random(null),
+        ),
+      ],
+    );
+
+Widget commentCounter() => const Story(
+      'Comment with counter ',
+      [
+        IconButton(
+          data: BlendIcons.comment,
+          counter: '0.0K',
         ),
       ],
     );
