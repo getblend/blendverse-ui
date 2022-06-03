@@ -76,3 +76,24 @@ Widget styles() => const Story(
         ),
       ],
     );
+
+Widget expandable() => Story(
+      'Expandables Typography',
+      [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: const [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: ExpandableText(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem IpsumLorem Ipsum is simply dummy text of the printing and typesetting industry. \n . \n . \n . \n . \n .\n Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text \n ever since the 1500s, the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry.  \n . \n . \n . \n . \n .\n #Lorem #Ipsum #is #simply #dummy #text #of #the #printing #and #typesetting #industry. #Lorem #Ipsum #has #been #the #industry\'s #standard #dummy #text #ever #since #the #1500s, #the #release #of #Letraset #sheets #containing #Lorem #Ipsum #passages, #and #more #recently #with #desktop #publishing #software #like #Aldus #PageMaker #including #versions #of #Lorem #Ipsum.',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );

@@ -15,6 +15,7 @@ var allStories = {
   ],
   'Typography': [
     typography.basic(),
+    typography.expandable(),
     typography.styles(),
   ]
 };

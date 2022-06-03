@@ -41,7 +41,11 @@ class Typography extends StatelessWidget {
   const Typography(
     this.text, {
     Key? key,
-    this.style = TypoStyle.h4,
+    this.style = TypoStyle.b2,
+    this.softWrap,
+    this.textAlign = TextAlign.left,
+    this.overflow,
+    this.maxLines,
   }) : super(key: key);
 
   /// [text] is a required property for the text to displayed
@@ -53,6 +57,48 @@ class Typography extends StatelessWidget {
   ///
   /// By default it takes TypoStyle.h4 as the style
   final TypoStyle style;
+
+  /// How the text should be aligned horizontally.
+  final TextAlign? textAlign;
+
+  /// Whether the text should break at soft line breaks.
+  ///
+  /// If false, the glyphs in the text will be positioned as if
+  /// there was unlimited horizontal space.
+  final bool? softWrap;
+
+  /// How visual overflow should be handled.
+  ///
+  /// If this is null [TextStyle.overflow] will be used, otherwise the value
+  /// from the nearest [DefaultTextStyle] ancestor will be used.
+  final TextOverflow? overflow;
+
+  /// An optional maximum number of lines for the text to span, wrapping if
+  /// necessary.
+  /// If the text exceeds the given number of lines, it will be truncated
+  /// according
+  /// to [overflow].
+  ///
+  /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+  /// edge of the box.
+  ///
+  /// If this is null, but there is an ambient [DefaultTextStyle] that specifies
+  /// an explicit number for its [DefaultTextStyle.maxLines], then the
+  /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
+  /// widget directly to entirely override the [DefaultTextStyle].
+  final int? maxLines;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: _style(context),
+      textAlign: textAlign,
+      softWrap: softWrap,
+      maxLines: maxLines,
+      overflow: overflow,
+    );
+  }
 
   /// [_style] is a private function for [Typography] class to dynamically
   ///
@@ -88,13 +134,5 @@ class Typography extends StatelessWidget {
       case TypoStyle.secondary:
         return Theme.of(c).textTheme.secondary;
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: _style(context),
-    );
   }
 }
