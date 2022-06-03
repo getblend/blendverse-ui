@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
+/// [AppColors] class is used to define the colors that the app
+///
+/// is supposed to use, it takes a seed color and is used to generate
+///
+/// [ColorScheme] using the seed color
 class AppColors {
   static const seed = Color(0xFF6750A4);
 
+  // Used to define theme color when its light mode
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xFF6750A4),
@@ -34,6 +40,7 @@ class AppColors {
     shadow: Color(0xFF000000),
   );
 
+  // Used to define theme color when its light mode
   static const darkColorScheme = ColorScheme(
     brightness: Brightness.dark,
     primary: Color(0xFFD0BCFF),
