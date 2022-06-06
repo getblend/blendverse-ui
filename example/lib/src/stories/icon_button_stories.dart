@@ -2,7 +2,6 @@
 
 import 'package:blendverse_ui/widgets.dart';
 import 'package:flutter/widgets.dart';
-
 import '../story/story.dart';
 
 Widget basic() => const Story(
@@ -13,6 +12,9 @@ Widget basic() => const Story(
         ),
         IconButton(
           data: BlendIcons.comment,
+        ),
+        IconButton(
+          data: BlendIcons.share,
         ),
       ],
     );

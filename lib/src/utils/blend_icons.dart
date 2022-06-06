@@ -7,6 +7,9 @@ class BlendIcons {
   static const IconData favorite =
       IconData(0xe25b, fontFamily: 'MaterialIcons');
 
+  /// <i class="material-icons md-36">share</i> &#x2014; material icon named "share".
+  static const IconData share = IconData(0xe593, fontFamily: 'MaterialIcons');
+
   /// <i class="material-icons-round md-36">insert_comment</i> &#x2014; material
   /// icon named "insert comment" (round).
   static const IconData comment = IconData(0xf81a, fontFamily: 'MaterialIcons');
