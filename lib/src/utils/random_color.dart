@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 /// colors from Colors.primaries
 
 extension RandomColor on Color {
-  static Color random(int? seed) {
+  // ignore: avoid_init_to_null
+  static Color random({int? seed = null}) {
     final colors = <Color>[
       Colors.red,
       Colors.blue,
