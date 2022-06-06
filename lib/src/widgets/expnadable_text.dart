@@ -72,7 +72,7 @@ class _ExpandableTextState extends State<ExpandableText> {
             text_typo.Typography(
               !flag ? widget.text.substring(0, 100) : widget.text,
               overflow: flag ? null : TextOverflow.ellipsis,
-              softWrap: flag,
+              wrap: flag,
             ),
           ],
         ),
