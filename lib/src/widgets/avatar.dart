@@ -143,7 +143,10 @@ class Avatar extends StatelessWidget {
             )
           : Text(
               _initials.toString(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(fontSize: _radius.toDouble() / 1.4),
             ),
     );
   }

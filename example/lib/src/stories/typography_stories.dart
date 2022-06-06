@@ -14,3 +14,57 @@ Widget basic() => const Story(
         ),
       ],
     );
+
+Widget styles() => const Story(
+      'Available Styles',
+      [
+        Typography(
+          'Heading 1',
+          style: BlendTextStyle.h1,
+        ),
+        Typography(
+          'Heading 2',
+          style: BlendTextStyle.h2,
+        ),
+        Typography(
+          'Heading 3',
+          style: BlendTextStyle.h3,
+        ),
+        Typography(
+          'Heading 4',
+          style: BlendTextStyle.h4,
+        ),
+        Typography(
+          'Heading 5',
+          style: BlendTextStyle.h5,
+        ),
+        Typography(
+          'Heading 6',
+          style: BlendTextStyle.h6,
+        ),
+        Typography(
+          'Body 1',
+          style: BlendTextStyle.body,
+        ),
+        Typography(
+          'Subtitle 1',
+          style: BlendTextStyle.subtitle,
+        ),
+        Typography(
+          'Caption',
+          style: BlendTextStyle.caption,
+        ),
+        Typography(
+          'Error',
+          style: BlendTextStyle.error,
+        ),
+        Typography(
+          'Primary',
+          style: BlendTextStyle.primary,
+        ),
+        Typography(
+          'Secondary',
+          style: BlendTextStyle.secondary,
+        ),
+      ],
+    );
