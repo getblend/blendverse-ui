@@ -7,8 +7,5 @@ var allStories = {
     icon_buttons.basic(),
     icon_buttons.sizes(),
     icon_buttons.counter(),
-    icon_buttons.basicComment(),
-    icon_buttons.commentSizes(),
-    icon_buttons.commentCounter()
   ]
 };
