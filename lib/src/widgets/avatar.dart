@@ -135,7 +135,7 @@ class Avatar extends StatelessWidget {
   Widget _buildFallback(BuildContext context) {
     return CircleAvatar(
       radius: _radius.toDouble(),
-      backgroundColor: RandomColor.random(name?.length),
+      backgroundColor: RandomColor.random(seed: name?.length),
       child: _initials == null
           ? Icon(
               Icons.person_outline,
