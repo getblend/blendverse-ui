@@ -41,7 +41,7 @@ class Typography extends StatelessWidget {
   const Typography(
     this.text, {
     Key? key,
-    this.style = TypoStyle.h4,
+    this.style = TypoStyle.b1,
   }) : super(key: key);
 
   /// [text] is a required property for the text to displayed
