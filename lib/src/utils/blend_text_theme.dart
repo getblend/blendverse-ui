@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-/// [CustomStyles] is a class extension on [TextTheme]
+/// [BlendTextTheme] is a class extension on [TextTheme]
 ///
 /// It supports to declare custom text styles with a getter function to
 ///
 /// Implement anywhere from the project
-extension CustomStyles on TextTheme {
+extension BlendTextTheme on TextTheme {
   // Getter function for error textStyle
   TextStyle get error => const TextStyle(
         fontSize: 18,

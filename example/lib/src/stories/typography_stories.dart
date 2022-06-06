@@ -20,59 +20,51 @@ Widget styles() => const Story(
       [
         Typography(
           'Heading 1',
-          style: TypoStyle.h1,
+          style: BlendTextStyle.h1,
         ),
         Typography(
           'Heading 2',
-          style: TypoStyle.h2,
+          style: BlendTextStyle.h2,
         ),
         Typography(
           'Heading 3',
-          style: TypoStyle.h3,
+          style: BlendTextStyle.h3,
         ),
         Typography(
           'Heading 4',
-          style: TypoStyle.h4,
+          style: BlendTextStyle.h4,
         ),
         Typography(
           'Heading 5',
-          style: TypoStyle.h5,
+          style: BlendTextStyle.h5,
         ),
         Typography(
           'Heading 6',
-          style: TypoStyle.h6,
+          style: BlendTextStyle.h6,
         ),
         Typography(
           'Body 1',
-          style: TypoStyle.b1,
-        ),
-        Typography(
-          'Body2',
-          style: TypoStyle.b2,
+          style: BlendTextStyle.body,
         ),
         Typography(
           'Subtitle 1',
-          style: TypoStyle.s1,
-        ),
-        Typography(
-          'Subtitle 2',
-          style: TypoStyle.s2,
+          style: BlendTextStyle.subtitle,
         ),
         Typography(
           'Caption',
-          style: TypoStyle.caption,
+          style: BlendTextStyle.caption,
         ),
         Typography(
           'Error',
-          style: TypoStyle.err,
+          style: BlendTextStyle.error,
         ),
         Typography(
           'Primary',
-          style: TypoStyle.primary,
+          style: BlendTextStyle.primary,
         ),
         Typography(
           'Secondary',
-          style: TypoStyle.secondary,
+          style: BlendTextStyle.secondary,
         ),
       ],
     );

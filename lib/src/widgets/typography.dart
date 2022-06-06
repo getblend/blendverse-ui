@@ -1,4 +1,4 @@
-import 'package:blendverse_ui/src/utils/custom_styles.dart';
+import 'package:blendverse_ui/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display text.
@@ -20,19 +20,17 @@ import 'package:flutter/material.dart';
 ///
 
 /// An enum that has a list of text styles available
-enum TypoStyle {
+enum BlendTextStyle {
   h1,
   h2,
   h3,
   h4,
   h5,
   h6,
-  b1,
-  b2,
-  s1,
-  s2,
+  body,
+  subtitle,
   caption,
-  err,
+  error,
   primary,
   secondary,
 }
@@ -41,7 +39,7 @@ class Typography extends StatelessWidget {
   const Typography(
     this.text, {
     Key? key,
-    this.style = TypoStyle.b1,
+    this.style = BlendTextStyle.body,
   }) : super(key: key);
 
   /// [text] is a required property for the text to displayed
@@ -49,43 +47,39 @@ class Typography extends StatelessWidget {
   /// it takes a string variable
   final String text;
 
-  /// [style] is a property that takes [TypoStyle] enum as the values
+  /// [style] is a property that takes [BlendTextStyle] enum as the values
   ///
   /// By default it takes TypoStyle.h4 as the style
-  final TypoStyle style;
+  final BlendTextStyle style;
 
   /// [_style] is a private function for [Typography] class to dynamically
   ///
   /// assign the text theme context
   TextStyle? _style(BuildContext c) {
     switch (style) {
-      case TypoStyle.h1:
+      case BlendTextStyle.h1:
         return Theme.of(c).textTheme.headline1;
-      case TypoStyle.h2:
+      case BlendTextStyle.h2:
         return Theme.of(c).textTheme.headline2;
-      case TypoStyle.h3:
+      case BlendTextStyle.h3:
         return Theme.of(c).textTheme.headline3;
-      case TypoStyle.h4:
+      case BlendTextStyle.h4:
         return Theme.of(c).textTheme.headline4;
-      case TypoStyle.h5:
+      case BlendTextStyle.h5:
         return Theme.of(c).textTheme.headline5;
-      case TypoStyle.h6:
+      case BlendTextStyle.h6:
         return Theme.of(c).textTheme.headline6;
-      case TypoStyle.b1:
+      case BlendTextStyle.body:
         return Theme.of(c).textTheme.bodyText1;
-      case TypoStyle.b2:
-        return Theme.of(c).textTheme.bodyText2;
-      case TypoStyle.s1:
+      case BlendTextStyle.subtitle:
         return Theme.of(c).textTheme.subtitle1;
-      case TypoStyle.s2:
-        return Theme.of(c).textTheme.subtitle2;
-      case TypoStyle.caption:
+      case BlendTextStyle.caption:
         return Theme.of(c).textTheme.caption;
-      case TypoStyle.err:
+      case BlendTextStyle.error:
         return Theme.of(c).textTheme.error;
-      case TypoStyle.primary:
+      case BlendTextStyle.primary:
         return Theme.of(c).textTheme.primary;
-      case TypoStyle.secondary:
+      case BlendTextStyle.secondary:
         return Theme.of(c).textTheme.secondary;
     }
   }
