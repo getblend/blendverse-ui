@@ -6,10 +6,13 @@ import 'package:flutter/widgets.dart';
 import '../story/story.dart';
 
 Widget basic() => const Story(
-      'Basic ',
+      'Icons',
       [
         IconButton(
           data: BlendIcons.favorite,
+        ),
+        IconButton(
+          data: BlendIcons.comment,
         ),
       ],
     );
@@ -20,27 +23,27 @@ Widget sizes() => Story(
         IconButton(
           size: WidgetSize.xs,
           data: BlendIcons.favorite,
-          color: RandomColor.random(null),
+          color: RandomColor.random(),
         ),
         IconButton(
           size: WidgetSize.sm,
           data: BlendIcons.favorite,
-          color: RandomColor.random(null),
+          color: RandomColor.random(),
         ),
         IconButton(
           size: WidgetSize.md,
           data: BlendIcons.favorite,
-          color: RandomColor.random(null),
+          color: RandomColor.random(),
         ),
         IconButton(
           size: WidgetSize.lg,
           data: BlendIcons.favorite,
-          color: RandomColor.random(null),
+          color: RandomColor.random(),
         ),
         IconButton(
           size: WidgetSize.xl,
           data: BlendIcons.favorite,
-          color: RandomColor.random(null),
+          color: RandomColor.random(),
         ),
       ],
     );
