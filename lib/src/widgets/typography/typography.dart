@@ -1,4 +1,5 @@
 import 'package:blendverse_ui/src/utils/utils.dart';
+import 'package:blendverse_ui/src/widgets/Typography/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display text.
@@ -40,9 +41,8 @@ class Typography extends StatelessWidget {
     this.text, {
     Key? key,
     this.style = BlendTextStyle.body,
-    this.wrap,
     this.textAlign = TextAlign.left,
-    this.overflow,
+    this.truncate = true,
     this.maxLines,
   }) : super(key: key);
 
@@ -54,23 +54,17 @@ class Typography extends StatelessWidget {
   /// How the text should be aligned horizontally.
   final TextAlign? textAlign;
 
-  /// Whether the text should break at soft line breaks.
-  ///
-  /// If false, the glyphs in the text will be positioned as if
-  /// there was unlimited horizontal space.
-  final bool? wrap;
-
   /// How visual overflow should be handled.
   ///
   /// If this is null [TextStyle.overflow] will be used, otherwise the value
   /// from the nearest [DefaultTextStyle] ancestor will be used.
-  final TextOverflow? overflow;
+  final bool truncate;
 
   /// An optional maximum number of lines for the text to span, wrapping if
   /// necessary.
   /// If the text exceeds the given number of lines, it will be truncated
   /// according
-  /// to [overflow].
+  /// to [truncate].
   ///
   /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
   /// edge of the box.
@@ -81,16 +75,24 @@ class Typography extends StatelessWidget {
   /// widget directly to entirely override the [DefaultTextStyle].
   final int? maxLines;
 
+  int? get _maxLines => maxLines == null || maxLines! < 1 ? null : maxLines;
+
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: _style(context),
-      textAlign: textAlign,
-      softWrap: wrap,
-      maxLines: maxLines,
-      overflow: overflow,
-    );
+    return truncate || (truncate == false && _maxLines == null)
+        ? Text(
+            text,
+            style: _style(context),
+            textAlign: textAlign,
+            maxLines: _maxLines,
+            softWrap: _maxLines == null,
+            overflow: truncate ? TextOverflow.ellipsis : null,
+          )
+        : ExpandableText(
+            text,
+            maxLines: _maxLines,
+            style: _style(context),
+          );
   }
 
   /// [style] is a property that takes [BlendTextStyle] enum as the values
