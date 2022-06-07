@@ -24,7 +24,7 @@ Welcome to Blendverse UI. This package features a list of components that are us
 ### Installation
 
 Make sure your environment is setup to work with flutter and then to get started with the developmet of this project, clone and run the following.
-
+    
 ```sh
 flutter pub get
 ```

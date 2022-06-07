@@ -1,4 +1,5 @@
 import 'package:blendverse_ui/src/utils/utils.dart';
+import 'package:blendverse_ui/src/widgets/Typography/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display text.
@@ -40,12 +41,59 @@ class Typography extends StatelessWidget {
     this.text, {
     Key? key,
     this.style = BlendTextStyle.body,
+    this.textAlign = TextAlign.left,
+    this.truncate = true,
+    this.maxLines,
   }) : super(key: key);
 
   /// [text] is a required property for the text to displayed
   ///
   /// it takes a string variable
   final String text;
+
+  /// How the text should be aligned horizontally.
+  final TextAlign? textAlign;
+
+  /// How visual overflow should be handled.
+  ///
+  /// If this is null [TextStyle.overflow] will be used, otherwise the value
+  /// from the nearest [DefaultTextStyle] ancestor will be used.
+  final bool truncate;
+
+  /// An optional maximum number of lines for the text to span, wrapping if
+  /// necessary.
+  /// If the text exceeds the given number of lines, it will be truncated
+  /// according
+  /// to [truncate].
+  ///
+  /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+  /// edge of the box.
+  ///
+  /// If this is null, but there is an ambient [DefaultTextStyle] that specifies
+  /// an explicit number for its [DefaultTextStyle.maxLines], then the
+  /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
+  /// widget directly to entirely override the [DefaultTextStyle].
+  final int? maxLines;
+
+  int? get _maxLines => maxLines == null || maxLines! < 1 ? null : maxLines;
+
+  @override
+  Widget build(BuildContext context) {
+    return truncate || (truncate == false && _maxLines == null)
+        ? Text(
+            text,
+            style: _style(context),
+            textAlign: textAlign,
+            maxLines: _maxLines,
+            softWrap: _maxLines == null,
+            overflow: truncate ? TextOverflow.ellipsis : null,
+          )
+        : ExpandableText(
+            text,
+            maxLines: _maxLines,
+            style: _style(context),
+          );
+  }
 
   /// [style] is a property that takes [BlendTextStyle] enum as the values
   ///
@@ -82,13 +130,5 @@ class Typography extends StatelessWidget {
       case BlendTextStyle.secondary:
         return Theme.of(c).textTheme.secondary;
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: _style(context),
-    );
   }
 }
