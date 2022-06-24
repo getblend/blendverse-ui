@@ -1,5 +1,5 @@
 import 'package:blendverse_ui/src/utils/utils.dart';
-import 'package:blendverse_ui/src/widgets/Typography/expandable_text.dart';
+import 'package:blendverse_ui/src/widgets/typography/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 /// Component used to display text.
